@@ -1,0 +1,16 @@
+# Enable Rewrite Engine
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # If a file or directory exists, serve it directly
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # Otherwise, redirect all requests to index.html
+  RewriteRule ^ index.html [L]
+</IfModule>
+
+# Optional: handle 404 errors gracefully
+ErrorDocument 404 /index.html
